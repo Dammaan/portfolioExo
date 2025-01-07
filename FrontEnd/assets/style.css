@@ -131,12 +131,13 @@ li:hover {
 	flex-direction: row;
 	justify-content: center;
 	color: #1D6154;
-	margin-bottom: 1.5em ;
+	margin-bottom: 2em ;
 	
 
 }
 
-#filter-style {
+.filter-style {
+	min-width: 90px;
 	border: #1D6154 solid 1px;
 	border-radius: 60px;
 	padding: 0.75em;
@@ -146,7 +147,7 @@ li:hover {
 
 }
 
-#filter-selected {
+.filter-active{
 	background-color: #1D6154;
 	color: aliceblue;
 
