@@ -4,16 +4,11 @@
    try { // Requête pour récupérer les catégories.
     const categories = await fetch("http://localhost:5678/api/categories");
     const categoriesJson = await categories.json();
-    console.log(categoriesJson);
-
-    const addCategories = { "id": 0,"name": "Tous"};
-    categoriesJson.push(addCategories)
-    // const newSet = new Set(categoriesJson);
-    // newSet.add({ "id": 0,"name": "Tous"})
-    // console.log(newSet);
-    // return newSet;
+    //Ajout filtre tous 
+    categoriesJson.unshift ({ "id": 0,"name": "Tous"})
+    
     newCategories(categoriesJson)
-    console.log("Données après ajout :", categoriesJson);
+
     
    }  catch (error) {
     console.error(error.message);
@@ -31,13 +26,11 @@
       const filterContainer = document.querySelector(".filter-div");
   
       // Création des élèments html
-      const filterElement = document.createElement("p");
+      const filterElement = document.createElement("h2");
       filterElement.innerText = filter.name;
-  
-  
-      // Ajout des balises enfants
+      filterElement.id = 'filter-style'
+
       filterContainer.appendChild(filterElement); 
     }
   }
   
-

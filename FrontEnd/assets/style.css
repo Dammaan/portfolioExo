@@ -127,10 +127,29 @@ li:hover {
 }
 
 .filter-div {
-	text-align: center;
 	display: flex;
 	flex-direction: row;
+	justify-content: center;
 	color: #1D6154;
+	margin-bottom: 1.5em ;
+	
+
+}
+
+#filter-style {
+	border: #1D6154 solid 1px;
+	border-radius: 60px;
+	padding: 0.75em;
+	margin-left: 0.75em;
+	margin-right: 0.75em;
+	font-size: 16px;
+
+}
+
+#filter-selected {
+	background-color: #1D6154;
+	color: aliceblue;
+
 
 }
 .gallery {
