@@ -39,6 +39,6 @@ function newCategories(categories) {
   });
 
   // Initialisation de la première catégorie comme active
-    filterContainer.children[0].classList.add("filter-active");
+  filterContainer.children[0].classList.add("filter-active");
   
 }
