@@ -4,7 +4,7 @@ export async function generateGallery() {
     // Récupération des données via l'API
     const api = await fetch("http://localhost:5678/api/works");
     if (!api.ok) {
-      throw new Error(`Response status: ${response.status}`);
+      throw new Error(`Response status: ${api.status}`);
     }
     const works = await api.json();
 
@@ -16,6 +16,10 @@ export async function generateGallery() {
     clickBtn.addEventListener("click", () => {
       gallerySort(works)
     });
+
+    modeEdition()
+    deconnexion()
+
   } catch (error) {
     console.error(error.message);
   }
@@ -64,5 +68,45 @@ function newElements (works, gallery) {
       }
 }
 
+
+// Ajouter la bannière si l'utilisateur est connecté
+function modeEdition() {
+  const body = document.querySelector('body');
+
+  // Vérification si l'utilisateur est déjà connecté puis création de l'interface edition
+  if (localStorage.getItem("token")) {
+    
+    const banner = document.createElement("div");
+    banner.classList.add("edition-banner");
+
+    const iconBanner = document.createElement("i");
+    iconBanner.classList.add("fa-regular", "fa-pen-to-square");
+
+    const txtBanner = document.createElement("p");
+    txtBanner.innerText = "Mode édition";
+
+    body.insertBefore(banner,body.firstChild);
+    banner.appendChild(iconBanner);
+    banner.appendChild(txtBanner);
+
+    const logOut = document.getElementById("login-logout")
+    logOut.innerText ="logout";
+    logOut.setAttribute("href","#");
+  }
+}
+
+// Fonction pour déconnecter l'utilisateur et enlever la bannière
+function deconnexion() {
+  const logOut = document.getElementById("login-logout")
+  // Suprime le token et replace interface en mode normal à l'evenement
+  logOut.addEventListener("click",(event) => {
+    localStorage.removeItem("token") 
+    logOut.innerHTML = "";
+    window.location.href = "./index.html"; // Rediriger après déconnexion
+});
+
+    
+  }; 
+  
 
 

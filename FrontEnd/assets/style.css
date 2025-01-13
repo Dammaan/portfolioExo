@@ -99,6 +99,21 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
+.edition-banner {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	background-color: black;
+	z-index: 1000; 
+	padding: 10px 0;
+	display: flex;
+	justify-content: center;
+	align-items: center; 
+	color: #FFFEF8;
+	gap: 10px;
+}
+
 #introduction {
 	display: flex;
 	align-items: center;

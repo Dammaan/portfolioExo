@@ -4,7 +4,7 @@ export function postAuthentification() {
   
       btnConnexion.addEventListener("click", async (event) => {
         event.preventDefault();
-  
+        // récuperation des données formulaires
         const email = document.getElementById("email")?.value.trim();
         const password = document.getElementById("password")?.value.trim();
   
@@ -24,7 +24,7 @@ export function postAuthentification() {
       });
   
       if (!response.ok) {
-        throw new Error(
+        alert(
           "L’authentification a échoué. Veuillez vérifier votre identifiant et votre mot de passe et réessayer."
         );
       }
@@ -33,7 +33,6 @@ export function postAuthentification() {
   
       if (data.token) {
         localStorage.setItem("token", data.token); // Stocker le token
-        alert("Connexion réussie !");
         window.location.href = "./index.html"; // Rediriger l'utilisateur
       } 
     } catch (error) {
