@@ -1,19 +1,19 @@
 export function postAuthentification() {
-    try {
       const btnConnexion = document.querySelector('input[value="Se connecter"]');
   
-      btnConnexion.addEventListener("click", async (event) => {
-        event.preventDefault();
-        // récuperation des données formulaires
-        const email = document.getElementById("email")?.value.trim();
-        const password = document.getElementById("password")?.value.trim();
-  
-        await login(email, password);
-      });
-    } catch (error) {
-      console.error("Erreur :", error.message);
+      if(btnConnexion) {
+        btnConnexion.addEventListener("click", async (event) => {
+                event.preventDefault();
+                // récuperation des données formulaires
+                const email = document.getElementById("email")?.value.trim();
+                const password = document.getElementById("password")?.value.trim();
+          
+                await login(email, password);
+              });
+      }
+
+      
     }
-  }
   
   async function login(email, password) {
     try {

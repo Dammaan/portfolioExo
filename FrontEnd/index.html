@@ -40,12 +40,28 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+		<div class="title-project">
+			<h2>Mes Projets</h2>
+				<div id="edit-works" style="display: none;">
+					<a href="#modal-edit"id="edit-button" class="lien">
+					<i class="fa-regular fa-pen-to-square"></i>
+					<span>modifier</span>
+					</a>
+				</div>
+		</div>
+		
 		<div class="filter-div" >
 			<!--  Ajout et gestion des filtres par JS -->
 		</div>
 		<div class="gallery">
 			<!--  Ajout et gestion de la galerie par JS -->
+		</div>
+	</section>
+	<!--  Edit modal -->
+	<section id ="modal-edit" class="modal" aria-hiden="true" arial-modal="false" style="display: none">
+		<div class="modal-wrapper">
+			<i></i>
+			<h3>Galerie photo</h3>
 		</div>
 	</section>
 	<section id="contact">

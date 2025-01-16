@@ -92,6 +92,17 @@ function modeEdition() {
     const logOut = document.getElementById("login-logout")
     logOut.innerText ="logout";
     logOut.setAttribute("href","#");
+
+    // Ajout bouton modal 
+
+    const editWorks =document.getElementById ("edit-works")
+    editWorks.style.display = "flex"
+
+
+    // Supression filtres 
+    const filterDiv = document.querySelector(".filter-div")
+    filterDiv.innerHTML=""
+    
   }
 }
 
@@ -107,6 +118,26 @@ function deconnexion() {
 
     
   }; 
+  
+//Ouverture modal
+
+let modal = null;
+
+const openModal = function (e) {
+  e.preventDefault();
+  const target = document.getElementById("modal-edit");
+  target.style.display = "flex";
+  target.setAttribute("aria-hidden", false);
+  target.setAttribute("aria-modal", true);
+  modal = target;
+};
+
+
+const editButton = document.querySelector("#edit-button")
+if(editButton) {
+  editButton.addEventListener("click", openModal);
+}
+
   
 
 
