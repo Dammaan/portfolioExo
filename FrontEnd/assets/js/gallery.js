@@ -11,7 +11,7 @@ export async function generateGallery() {
     //Génération des elements de la galerie intiale
     gallerySort(works);
 
-    //Génération des elements de la galerie au click
+    //Génération des elements filtrer de la galerie au click
     const clickBtn = document.querySelector(".filter-div")
     clickBtn.addEventListener("click", () => {
       gallerySort(works)
@@ -47,7 +47,7 @@ function gallerySort(works) {
 } 
 
 
-function newElements (works, gallery) {
+ function newElements (works, gallery) {
   for (let i = 0; i < works.length; i++) {
         const work = works[i];
 
@@ -119,24 +119,7 @@ function deconnexion() {
     
   }; 
   
-//Ouverture modal
 
-let modal = null;
-
-const openModal = function (e) {
-  e.preventDefault();
-  const target = document.getElementById("modal-edit");
-  target.style.display = "flex";
-  target.setAttribute("aria-hidden", false);
-  target.setAttribute("aria-modal", true);
-  modal = target;
-};
-
-
-const editButton = document.querySelector("#edit-button")
-if(editButton) {
-  editButton.addEventListener("click", openModal);
-}
 
   
 

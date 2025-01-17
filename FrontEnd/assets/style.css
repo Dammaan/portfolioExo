@@ -172,6 +172,7 @@ li:hover {
 	margin-left: 0.75em;
 	margin-right: 0.75em;
 	font-size: 16px;
+	cursor: pointer;;
 
 }
 
@@ -195,15 +196,16 @@ li:hover {
 }
 
 .modal {
-	position: fixed; /*prende l'entierté de l'écran */
+	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: rgba(0,0,0,0.8);
+	background:#00000056;
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	margin: 0;
 
 }
 
@@ -215,7 +217,64 @@ li:hover {
    max-height :100vh;
    padding: 20px;
    overflow: auto;
+   border-radius: 10px;
+   overflow: auto; 
 }
+
+.modal-wrapper h3 {
+	font-family: 'Work Sans';
+	font-weight: 400;
+	font-size: 26px;
+	display: flex;
+	justify-content: center;
+	margin-bottom: 50px;
+}
+
+
+.close-button {
+	display: flex;
+  	font-size: 18px;
+	justify-content: end;
+	cursor: pointer;
+	margin-bottom: 30px;
+}
+
+.modal-gallery {
+	display: grid;
+	grid-template-columns: repeat(5, 75px);
+	gap: 20px 8px; 
+	justify-content: center; 
+	padding: 20px;
+	
+  }
+  
+.modal-gallery img {
+	width: 75px; 
+	height: 100px; 
+	object-fit: cover; 
+  }
+
+  .modal-button {
+	font-family: 'Syne';
+	font-weight: 700;
+	color: white;
+	background-color: #1D6154;
+	display: block;
+	margin : 2em auto ;
+	width: 180px;
+	height: 36px;
+	text-align: center;
+	border-radius: 60px;
+	border-style: none;
+	cursor: pointer;
+} 
+
+.border-line {
+	border-top: #B3B3B3 1px solid;
+	width: 420px;
+	margin: 50px auto;
+}
+
 #contact {
 	width: 50%;
 	margin: auto;

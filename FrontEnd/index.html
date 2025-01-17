@@ -14,6 +14,7 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
 	<script  type="module" src="./assets/js/main.js" defer></script>
+	<script  type="module" src="./assets/js/modal.js" defer></script>
 </head>
 <body>
 <header>
@@ -59,9 +60,21 @@
 	</section>
 	<!--  Edit modal -->
 	<section id ="modal-edit" class="modal" aria-hiden="true" arial-modal="false" style="display: none">
-		<div class="modal-wrapper">
-			<i></i>
+		<div class="modal-wrapper" id="edit-works">
+			<i class="fa-solid fa-xmark close-button"></i>
 			<h3>Galerie photo</h3>
+			<div class="modal-gallery">
+				<!-- Galerie gérée par JavaScript -->
+			</div>
+
+			<div class="border-line"></div>
+			<button type="button" class="modal-button">Ajouter une photo</button>
+
+		</div>
+		<div class="modal-wrapper" id="add-works"aria-hiden="true" arial-modal="false" style="display: none" >
+			<div class="modal-wrapper" id="add-works">
+			<i class="fa-solid fa-xmark close-button"></i>
+			<h3>Ajout photo</h3>
 		</div>
 	</section>
 	<section id="contact">
