@@ -346,7 +346,7 @@ li:hover {
   color: white;
   background-color: #1d6154;
   display: block;
-  margin: 2em auto;
+  margin: auto;
   width: 180px;
   height: 36px;
   text-align: center;
@@ -421,3 +421,60 @@ footer nav ul {
   justify-content: flex-end;
   margin: 2em;
 }
+
+/* Formulaire ajout travail */
+
+#formAddWork {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#formAddWork input[type="text"],
+#formAddWork select {
+  padding: 18px;
+}
+
+.containerAddPhoto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  background-color: #e8f1f6;
+  padding: 19px;
+  border-radius: 3px;
+  margin-bottom: 9px;
+}
+
+#previewImage {
+  max-height: 160px;
+}
+
+.labelFile {
+  color: #306685;
+  background-color: #cbd6dc;
+  padding: 10px 33px;
+  border-radius: 50px;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 500;
+  padding-top: 11px;
+}
+
+#categoryInput,
+#title {
+  border: none;
+  background: #fff;
+  box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+}
+
+.fa-image {
+  font-size: 76px;
+  color: #cbd6dc;
+  margin: 0;
+}
+
+
+/* Fin formulaire ajout travail */

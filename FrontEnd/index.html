@@ -66,8 +66,8 @@
 			</div>
 		</section>
 		<!--  Edit modal -->
-		<section id="modal-edit" class="modal" aria-hiden="true" arial-modal="false" style="display: null">
-			<div class="modal-wrapper" id="edit-works" style="display: none">
+		<section id="modal-edit" class="modal" aria-hidden="true" aria-modal="false" style="display: none">
+			<div class="modal-wrapper" id="edit-projects" style="display: none">
 				<i class="fa-solid fa-xmark close-button"></i>
 				<h3>Galerie photo</h3>
 				<div class="modal-gallery">
@@ -75,13 +75,29 @@
 				</div>
 
 				<div class="border-line"></div>
-				<button type="button" class="modal-button">Ajouter une photo</button>
+				<button type="button" class="modal-button redirection-button ">Ajouter une photo</button>
 
 			</div>
 			<div class="modal-wrapper" id="add-works" aria-hiden="true" arial-modal="false" style="display: none">
 				<div class="modal-wrapper" id="add-works">
+					<i class="fa-solid fa-arrow-left"></i>
 					<i class="fa-solid fa-xmark close-button"></i>
-					<h3>Ajout photo</h3>
+					<h3>Ajout photo</h3>		
+					<form id="formAddWork">
+						<div class="containerAddPhoto">
+							<i class="fa-regular fa-image"></i>
+							<label for="file" class="labelFile">+ Ajouter photo</label>
+							<p>jpg, png : 4mo max</p>
+							<input type="file" name="image" id="file" accept="image/jpg, image/png" required style="display: none;">
+							<img id="previewImage" src="#" alt="Aperçu de l'image" style="display: none;">
+						</div>
+						<label for="title">Titre</label>
+						<input type="text" name="title" id="title" required>
+						<label for="categoryInput">Catégorie</label>
+						<select id="categoryInput" name="category" required></select>
+						<div class="border-line"></div>
+						<button type="button" class="modal-button add-button">Valider</button>
+					</form>
 				</div>
 		</section>
 		<section id="contact">
