@@ -1,13 +1,23 @@
 let modal = null;
 
+//Variables pour les modales
+const target = document.getElementById("modal-edit");
+const editModal = document.getElementById("edit-projects");
+const addModal = document.getElementById("add-works");
+const gallery = document.querySelector(".modal-gallery");
+
+//Variables pour le formulaire
+const editButton = document.querySelector("#edit-button");
+const addButton = document.querySelector(".redirection-button");
+const formImage = document.getElementById("previewImage");
+const containerElements = document.querySelector(".AddPhoto");
+
 // Fonction pour ouvrir la modale principale et afficher une sous-modale
 const openModal = function (e) {
   e.preventDefault();
 
-  const target = document.getElementById("modal-edit");
   if (!target) return;
 
-  const editModal = document.getElementById("edit-projects");
   if (!editModal) {
     console.error("Impossible de trouver l'élément 'edit-projects'");
     return;
@@ -23,17 +33,14 @@ const openModal = function (e) {
 
   modal = target;
 
-  generateGallery();
+  generateGalleryModal();
 };
 
 // Fonction pour ouvrir la sous-modale "add-works"
 const openModalAdd = function (e) {
   e.preventDefault();
 
-  const editModal = document.getElementById("edit-projects");
-  const newModal = document.getElementById("add-works");
-
-  if (!newModal) {
+  if (!addModal) {
     console.error("Impossible de trouver l'élément 'add-works'");
     return;
   }
@@ -42,20 +49,44 @@ const openModalAdd = function (e) {
   if (editModal) {
     editModal.style.display = "none";
   }
-  newModal.style.display = "flex";
-  newModal.setAttribute("aria-hidden", "false");
-  newModal.setAttribute("aria-modal", "true");
+  addModal.style.display = "block";
+  addModal.setAttribute("aria-hidden", "false");
+  addModal.setAttribute("aria-modal", "true");
 
-  modal = newModal;
+  modal = addModal;
+
+  // Bouton retour en arrière
+  const returnButton = document.querySelector(".return-button");
+  returnButton.addEventListener("click", returnBack);
 
   loadCategories();
 };
+
+// Fonction pour revenir à la modale précédente
+function returnBack() {
+  if (editModal) editModal.style.display = "block";
+  if (addModal) addModal.style.display = "none";
+
+  const form = document.getElementById("formAdd");
+  if (form) form.reset();
+
+  formImage.src = "#";
+  formImage.style.display = "none";
+
+  const containerElements = document.querySelector(".AddPhoto");
+  if (containerElements) {
+    containerElements.querySelector("i").style.display = "block";
+    containerElements.querySelector("label").style.display = "block";
+    containerElements.querySelector("p").style.display = "block";
+  }
+
+  generateGalleryModal();
+}
 
 // Fonction pour fermer la modale principale
 const closeModal = function (e) {
   e.preventDefault();
 
-  const target = document.getElementById("modal-edit");
   if (!target) return;
 
   // Masque la modale principale
@@ -64,8 +95,6 @@ const closeModal = function (e) {
   target.setAttribute("aria-modal", "false");
 
   // Masquer les sous-modales
-  const editModal = document.getElementById("edit-projects");
-  const addModal = document.getElementById("add-works");
   if (editModal) editModal.style.display = "none";
   if (addModal) addModal.style.display = "none";
 
@@ -79,19 +108,17 @@ document.addEventListener("click", (e) => {
   }
 });
 
-// Attache les événements pour ouvrir les differentes modales
-const editButton = document.querySelector("#edit-button");
+// Attache les événements pour ouvrir les différentes modales
 if (editButton) {
   editButton.addEventListener("click", openModal);
 }
 
-const addButton = document.querySelector(".redirection-button");
 if (addButton) {
   addButton.addEventListener("click", openModalAdd);
 }
 
 // Fonction pour récupérer et générer la galerie
-async function generateGallery() {
+async function generateGalleryModal() {
   try {
     const api = await fetch("http://localhost:5678/api/works");
     if (!api.ok) {
@@ -105,7 +132,6 @@ async function generateGallery() {
 }
 
 function newElements(works) {
-  const gallery = document.querySelector(".modal-gallery");
   if (!gallery) {
     console.error("Impossible de trouver l'élément '.modal-gallery'");
     return;
@@ -115,7 +141,8 @@ function newElements(works) {
 
   works.forEach((work) => {
     const figureElement = document.createElement("figure");
-    figureElement.style.position = "relative"; // Pour positionner l'icône correctement
+    figureElement.style.position = "relative";
+    figureElement.setAttribute("data-id", work.id); // Ajoute l'ID du projet
 
     const imageElement = document.createElement("img");
     imageElement.src = work.imageUrl;
@@ -128,6 +155,17 @@ function newElements(works) {
     figureElement.appendChild(iconeElement);
 
     gallery.appendChild(figureElement);
+  });
+
+  // Attache les événements de suppression après avoir ajouté les éléments à la galerie
+  const trashIcons = document.querySelectorAll(".trash-icon");
+  trashIcons.forEach((trashIcon) => {
+    trashIcon.addEventListener("click", async function (e) {
+      e.preventDefault();
+      const figureElement = trashIcon.closest("figure"); // Récupère le parent figure
+      const workId = figureElement.getAttribute("data-id");
+      await deleteWork(workId); // Appel de deleteWork sans passer l'événement
+    });
   });
 }
 
@@ -164,17 +202,14 @@ async function loadCategories() {
 
 // Apparition de l'image chargée
 document.getElementById("file").addEventListener("change", function (event) {
-  const file = event.target.files[0]; // Récupère le fichier sélectionné
-  const previewImage = document.getElementById("previewImage");
-  const containerElements = document.querySelector(".containerAddPhoto");
-
+  const file = event.target.files[0];
   if (file) {
     const reader = new FileReader();
 
     // Une fois le fichier chargé, mettre à jour l'aperçu
     reader.onload = function (e) {
-      previewImage.src = e.target.result;
-      previewImage.style.display = "block"; // Affiche l'image
+      formImage.src = e.target.result;
+      formImage.style.display = "block";
 
       // Masquer les éléments
       containerElements.querySelector("i").style.display = "none";
@@ -182,10 +217,10 @@ document.getElementById("file").addEventListener("change", function (event) {
       containerElements.querySelector("p").style.display = "none";
     };
 
-    reader.readAsDataURL(file); // Lit le fichier en tant que Data URL
+    reader.readAsDataURL(file);
   } else {
-    previewImage.style.display = "none"; // Cache l'aperçu si aucun fichier n'est sélectionné
-    previewImage.src = "#";
+    formImage.style.display = "none";
+    formImage.src = "#";
 
     // Réafficher les éléments
     containerElements.querySelector("i").style.display = "block";
@@ -193,3 +228,81 @@ document.getElementById("file").addEventListener("change", function (event) {
     containerElements.querySelector("p").style.display = "block";
   }
 });
+
+// Bouton retour en arrière
+document.querySelector(".add-button").addEventListener("click", addWork);
+
+// Validation et soumission du formulaire d'ajout de travail
+async function addWork(e) {
+  e.preventDefault();
+
+  const form = document.getElementById("formAdd");
+  if (!form) {
+    console.error("Le formulaire d'ajout de travail n'a pas été trouvé.");
+    return;
+  }
+
+  const formData = new FormData(form);
+
+  // Validation des champs obligatoires
+  if (
+    !formData.get("title") ||
+    !formData.get("category") ||
+    !formData.get("image")
+  ) {
+    alert("Veuillez remplir tous les champs obligatoires.");
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost:5678/api/works", {
+      method: "POST",
+      body: formData,
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+
+    returnBack(e);
+
+    console.log("Projet ajouté avec succès:", result);
+  } catch (error) {
+    console.error("Erreur lors de l'ajout du projet:", error);
+  }
+}
+
+// Fonction pour supprimer un projet
+async function deleteWork(workId) {
+  if (!confirm("Êtes-vous sûr de vouloir supprimer ce projet ?")) {
+    return;
+  }
+
+  try {
+    // Envoie une requête DELETE à l'API
+    const response = await fetch(`http://localhost:5678/api/works/${workId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    });
+
+    if (!response.ok)
+      throw new Error(`Erreur lors de la suppression: ${response.status}`);
+
+    // Supprime l'élément de la galerie
+    const figureElement = document.querySelector(`figure[data-id="${workId}"]`);
+    if (figureElement) {
+      figureElement.remove();
+    }
+
+    console.log(`Projet ${workId} supprimé avec succès.`);
+  } catch (error) {
+    console.error("Erreur lors de la suppression:", error);
+  }
+}

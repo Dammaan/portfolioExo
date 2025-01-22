@@ -14,6 +14,7 @@ export async function getCategories() {
 }
 
 function newCategories(categories) {
+  
   // Récupération de l'élément qui accueillera la galerie
   const filterContainer = document.querySelector(".filter-div");
 
