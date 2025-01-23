@@ -1,3 +1,6 @@
+// Appel de la fonction pour générer les filtres
+getCategories();
+
 // Fonction  pour récupérer les catégories depuis l'API.
 export async function getCategories() {
   try {
@@ -14,7 +17,6 @@ export async function getCategories() {
 }
 
 function newCategories(categories) {
-  
   // Récupération de l'élément qui accueillera la galerie
   const filterContainer = document.querySelector(".filter-div");
 

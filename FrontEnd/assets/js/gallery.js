@@ -1,3 +1,6 @@
+// Appel de la fonction pour générer la galerie
+generateGallery();
+
 // Fonction pour récupérer et générer la galerie
 export async function generateGallery() {
   try {
@@ -27,9 +30,10 @@ export async function generateGallery() {
 // Création de la galerie selon sont filtre
 function gallerySort(works) {
   const filterBtn = document.querySelector(".filter-active");
-
-  const idFilter = filterBtn.id;
-
+  let idFilter = "0";
+  if (filterBtn) {
+    idFilter = filterBtn.id;
+  }
   const gallery = document.querySelector(".gallery");
   gallery.innerHTML = "";
 

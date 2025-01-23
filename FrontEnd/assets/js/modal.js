@@ -1,3 +1,5 @@
+import { generateGallery } from "./gallery.js";
+
 let modal = null;
 
 //Variables pour les modales
@@ -229,7 +231,6 @@ document.getElementById("file").addEventListener("change", function (event) {
   }
 });
 
-// Bouton retour en arrière
 document.querySelector(".add-button").addEventListener("click", addWork);
 
 // Validation et soumission du formulaire d'ajout de travail
@@ -267,11 +268,8 @@ async function addWork(e) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const result = await response.json();
-
     returnBack(e);
-
-    console.log("Projet ajouté avec succès:", result);
+    generateGallery();
   } catch (error) {
     console.error("Erreur lors de l'ajout du projet:", error);
   }
@@ -300,8 +298,7 @@ async function deleteWork(workId) {
     if (figureElement) {
       figureElement.remove();
     }
-
-    console.log(`Projet ${workId} supprimé avec succès.`);
+    generateGallery();
   } catch (error) {
     console.error("Erreur lors de la suppression:", error);
   }

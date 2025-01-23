@@ -1,3 +1,6 @@
+//Appel de la fonction pour se connecter
+postAuthentification();
+
 export function postAuthentification() {
   const btnConnexion = document.querySelector('input[value="Se connecter"]');
 

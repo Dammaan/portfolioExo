@@ -178,6 +178,10 @@ nav li {
 li:hover {
   color: #b1663c;
 }
+
+li img {
+  width: 22px;
+}
 .edition-banner {
   position: absolute;
   top: 0;
@@ -261,12 +265,18 @@ li:hover {
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
+  margin-bottom: 60px;
 }
 
 .gallery img {
   width: 100%;
   padding-bottom: 5px;
+  max-width: 100%;
+  max-height: 457px;
+  object-fit: cover;
 }
+
+/* Modal */
 
 .modal {
   position: fixed;
@@ -275,7 +285,6 @@ li:hover {
   width: 100%;
   height: 100%;
   background: #00000056;
- 
   align-items: center;
   justify-content: center;
   margin: 0;
@@ -301,12 +310,11 @@ li:hover {
   margin-bottom: 30px;
 }
 
-
-.icone-container{
-display: flex;
-flex-direction: row;
-font-size: 18px;
-justify-content: space-between;
+.icone-container {
+  display: flex;
+  flex-direction: row;
+  font-size: 18px;
+  justify-content: space-between;
 }
 
 .close-button {
@@ -314,7 +322,7 @@ justify-content: space-between;
   justify-content: end;
   cursor: pointer;
   font-size: 18px;
-  margin-bottom: 30px; 
+  margin-bottom: 30px;
 }
 
 .return-button {
@@ -365,13 +373,9 @@ justify-content: space-between;
   border-style: none;
   cursor: pointer;
 }
+/* Fin modal*/
 
-.border-line {
-  border-top: #b3b3b3 1px solid;
-  width: 420px;
-  margin: 50px auto;
-}
-
+/* Contact */
 #contact {
   width: 50%;
   margin: auto;
@@ -384,7 +388,6 @@ justify-content: space-between;
 }
 #contact form {
   text-align: left;
-  margin-top: 30px;
   display: flex;
   flex-direction: column;
 }
@@ -402,6 +405,7 @@ justify-content: space-between;
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
+/*  Fin Contact */
 
 .login {
   height: 75vh;
@@ -421,7 +425,7 @@ input[type="submit"] {
   font-weight: 700;
   color: white;
   background-color: #1d6154;
-  margin: 2em auto;
+  margin: 40px auto;
   width: 180px;
   text-align: center;
   border-radius: 60px;
@@ -466,12 +470,17 @@ footer nav ul {
   background-color: #cbd6dc;
   padding: 10px 33px;
   border-radius: 50px;
+  cursor: pointer;
 }
 
 label {
   font-size: 14px;
   font-weight: 500;
   padding-top: 11px;
+}
+
+#categoryInput {
+  cursor: pointer;
 }
 
 #categoryInput,
@@ -487,5 +496,10 @@ label {
   margin: 0;
 }
 
+.border-line {
+  border-top: #b3b3b3 1px solid;
+  width: 420px;
+  margin: 50px auto;
+}
 
 /* Fin formulaire ajout travail */
