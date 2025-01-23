@@ -34,7 +34,7 @@ async function login(email, password) {
 
     if (data.token) {
       localStorage.setItem("token", data.token); // Stocker le token
-      window.location.href = "/index.html"; // Rediriger l'utilisateur
+      window.location.href = "index.html"; // Rediriger l'utilisateur
     }
   } catch (error) {
     console.error("Erreur lors de la connexion :", error.message);
