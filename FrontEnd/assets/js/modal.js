@@ -100,6 +100,20 @@ const closeModal = function (e) {
   if (editModal) editModal.style.display = "none";
   if (addModal) addModal.style.display = "none";
 
+  //Reset du formulaire 
+  const form = document.getElementById("formAdd");
+  if (form) form.reset();
+
+  formImage.src = "#";
+  formImage.style.display = "none";
+
+  const containerElements = document.querySelector(".AddPhoto");
+  if (containerElements) {
+    containerElements.querySelector("i").style.display = "block";
+    containerElements.querySelector("label").style.display = "block";
+    containerElements.querySelector("p").style.display = "block";
+  }
+
   modal = null;
 };
 
@@ -107,6 +121,17 @@ const closeModal = function (e) {
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("close-button")) {
     closeModal(e);
+  }
+});
+
+
+// Fermeture de la modale si on clique en dehors
+document.addEventListener("click", (e) => {
+  if (target && target.style.display === "flex") {
+    // Vérifie si l'élément cliqué est précisément la modale elle-même
+    if (e.target === target) {
+      closeModal(e);
+    }
   }
 });
 
